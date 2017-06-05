@@ -17,7 +17,8 @@ const MangoReducer = (state = initialState, action) => {
     }
     case 'GAME_START': {
       console.log("GAME_START")
-      return state
+      console.log(action.data.name)
+      return {...state, name: action.data.name }
     }
     default: return state
 

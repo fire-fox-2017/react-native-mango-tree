@@ -5,6 +5,9 @@ import {
   TextInput,
   Button
 } from 'react-native'
+import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import { gameStart } from '../actions'
 
 class Main extends React.Component {
   constructor(props) {
@@ -18,11 +21,14 @@ class Main extends React.Component {
     console.log("onPressHandler")
     // call action set name
     // then go to other page
+    this.props.gameStart(this.state)
+    Actions.Emulate()
+
   }
 
   render () {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Main</Text>
 
         <TextInput
@@ -38,6 +44,18 @@ class Main extends React.Component {
   }
 }
 
+const styles = {
+  container: {
+    flex: 1,
+    marginTop: 50
+  }
+}
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    gameStart: (data) => { dispatch(gameStart(data)) }
+  }
+}
 
-export default Main
+const connectedMain = connect(null, mapDispatchToProps)(Main)
+export default connectedMain
