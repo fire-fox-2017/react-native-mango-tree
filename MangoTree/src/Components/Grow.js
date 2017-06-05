@@ -9,15 +9,31 @@ class Grow extends Component {
   constructor(props) {
     super(props);
     console.log(props.mangos.name);
-    this.state = {};
+    this.state = {
+      toggleHarvest: true
+    };
+  }
+
+  checkFruit(Fruit) {
+    if (Fruit !== 0) {
+      this.setState({
+        toggleHarvest: false
+      });
+    } else {
+      this.setState({
+        toggleHarvest: true
+      });
+    }
   }
 
   growTree = () => {
     this.props.grow();
+    this.checkFruit(this.props.mangos.Fruit);
   };
 
   harvestTree = () => {
     this.props.harvest();
+    this.checkFruit(this.props.mangos.Fruit);
   };
 
   render() {
@@ -25,6 +41,7 @@ class Grow extends Component {
       <View>
         <Text>This is name,</Text>
         <Text>He is now age years old</Text>
+        <Text>basket:{this.props.mangos.harvest}</Text>
 
         <Button
           onPress={() => this.growTree()}
@@ -36,6 +53,7 @@ class Grow extends Component {
           onPress={() => this.harvestTree()}
           title="Harvest"
           color="#841584"
+          disabled={this.state.toggleHarvest}
           accessibilityLabel="Learn more about this purple button"
         />
       </View>
