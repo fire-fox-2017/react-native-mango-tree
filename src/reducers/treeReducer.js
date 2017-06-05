@@ -14,7 +14,8 @@ const initialState = {
     ageHarvest: Math.floor((Math.random() * 5) + 1),
     ageDead: Math.floor((Math.random() * 7) + 5),
     harvest: 0,
-    alive: true
+    alive: true,
+    harvestStatus: false
 }
 
 const getUserName = (state, data) => {
@@ -52,11 +53,12 @@ const getInfoTree = (state) => {
 
 const addAge = (state, data) => {
 
-    const { age, ageHarvest, ageDead, harvest } = state
+    const { age, ageHarvest, ageDead, harvest, harvestStatus } = state
 
     let umur = data + 1
     let buah = 0
     let status = null
+    let petik = null
 
     console.log(umur)
     console.log(ageDead)
@@ -66,6 +68,8 @@ const addAge = (state, data) => {
     } else {
         if (umur >= ageHarvest) {
             buah = Math.floor((Math.random() * 10) + 1)
+            status = true
+            petik = true
         }
     }
 
@@ -73,7 +77,7 @@ const addAge = (state, data) => {
         ...state,
         age: umur,
         harvest: buah,
-        status: true
+        alive: status
     }
 
     return newState
