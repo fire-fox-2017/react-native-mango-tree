@@ -1,0 +1,3 @@
+rootProject.name = 'ManggoTree'
+
+include ':app'
