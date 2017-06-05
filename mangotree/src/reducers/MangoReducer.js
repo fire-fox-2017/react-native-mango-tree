@@ -1,9 +1,8 @@
 const initialState = {
-  data: {
-    name: '',
-    tree_name: '',
-    max_age: 10
-  }
+  name: '',
+  tree_name: '',
+  max_age: 10,
+  increment_age: 5
 }
 
 function getRandomInt(min, max) {
@@ -18,7 +17,10 @@ const MangoReducer = (state = initialState, action) => {
     case 'GAME_START': {
       console.log("GAME_START")
       console.log(action.data.name)
-      return {...state, name: action.data.name }
+      const max_age = getRandomInt(10,20)
+      console.log("random max age", max_age)
+
+      return {...state, name: action.data.name, max_age: max_age }
     }
     default: return state
 

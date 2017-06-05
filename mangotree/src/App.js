@@ -8,6 +8,9 @@ import { Router, Scene } from 'react-native-router-flux';
 
 import Main from './components/Main'
 import Emulate from './components/Emulate'
+import GameOver from './components/GameOver'
+
+
 class App extends React.Component {
   render () {
     return (
@@ -17,6 +20,7 @@ class App extends React.Component {
         <Router>
            <Scene key="Main" component={Main} title="Main" initial={true}  />
            <Scene key="Emulate" component={Emulate} title="Emulate" />
+           <Scene key="Gameover" component={GameOver} title="Game Over" />
         </Router>
 
       </View>

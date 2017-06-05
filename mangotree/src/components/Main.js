@@ -22,7 +22,7 @@ class Main extends React.Component {
     // call action set name
     // then go to other page
     this.props.gameStart(this.state)
-    Actions.Emulate()
+    Actions.Emulate({temp: this.state})
 
   }
 
