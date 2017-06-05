@@ -4,18 +4,20 @@
  * @flow
  */
 
-import React from "react";
-import { AppRegistry } from "react-native";
-
+import React, { Component } from "react";
+import { AppRegistry, StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 
 import store from "./src/Store/Store";
 import App from "./src/Components/App";
+export default class MangoTree extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+  }
+}
 
-const MangoTree = () => (
-  <Provider store={store}>
-    <App />
-  </Provider>
-);
-
-AppRegistry.registerComponent("AwesomeProject", () => MangoTree);
+AppRegistry.registerComponent("MangoTree", () => MangoTree);

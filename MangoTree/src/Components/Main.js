@@ -1,30 +1,36 @@
 import React, { Component } from "react";
-import { View, Text, ListView, Button } from "react-native";
+import { View, Text, ListView, Button, TextInput } from "react-native";
 import { connect } from "react-redux";
 import { StackNavigator } from "react-navigation";
 
 class Main extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      text: "placeholder abal-abal"
+    };
   }
 
   //   static navigationOptions = {
   //     title: "List Anime"
   //   };
 
-  state = {};
-
-  componentDidMount() {
-    this.props.initAnime();
-  }
-
   render() {
     return (
       <View>
-        <h1>WOE</h1>
+        <TextInput
+          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          onChangeText={text => this.setState({ treeName })}
+          value={this.state.text}
+        />
+        <TextInput
+          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          onChangeText={text => this.setState({ treeName })}
+          value={this.state.text}
+        />
       </View>
     );
   }
 }
 
-export default connect(null, null)(Main);
+export default Main;
