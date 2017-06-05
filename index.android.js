@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  Image,
-  View
-} from 'react-native';
+import { AppRegistry, StyleSheet, Text, Image, View } from 'react-native';
 import App from './src/App'
+import { Provider } from 'react-redux'
+import store from './src/store'
 
 export default class awesome extends Component {
   render() {
     return (
+      <Provider store={store}>
       <View style={styles.container}>
-        <Text>heloo</Text>
+        <App />
       </View>
+    </Provider>
     );
   }
 }
@@ -21,7 +19,6 @@ export default class awesome extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
   },
   welcome: {
     fontSize: 20,

@@ -9,7 +9,7 @@ export default class Signin extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ paddingTop: 55 }}>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           onChangeText={(text) => this.setState({text})}

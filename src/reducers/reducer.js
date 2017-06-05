@@ -1,6 +1,7 @@
-const initialState = { data: [] };
+const initialState = { data: []
+};
 const fetchData = (state, data) => {
-	const newState = { ...state, data };
+	// const newState = { ...state, data };
 	return newState;
 };
 
