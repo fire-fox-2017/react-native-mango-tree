@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { connect } from 'react-redux';
+import { Provider } from 'react-redux';
+
+import store from './store/configureStore';
 
 class App extends React.Component {
 
@@ -14,4 +16,12 @@ class App extends React.Component {
 
 }
 
-export default App;
+const AppWithStore = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}
+
+export default AppWithStore;
