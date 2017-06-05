@@ -1,15 +1,11 @@
 
-const fetchTree(payload) = (data)=>{
-  
-}
 
-const harvest = (state={}, {type, payload}) => {
+const Harvest = (state={}, {type, payload}) => {
   console.log(type, 'direducer')
   switch (type) {
-    case "FETCH_TREE": return fetchTree(payload)
+    case "SET_TREE": return state
     default: return state
-
   }
 }
 
-export default harvest
+export default Harvest

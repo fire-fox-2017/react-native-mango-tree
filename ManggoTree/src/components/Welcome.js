@@ -3,27 +3,44 @@ import { connect } from 'react-redux'
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Button,
+  TextInput
 } from 'react-native';
 
 class Welcome extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      name : ''
+    }
+  }
+
+  handleChangeText(data){
+    this.setState({ name : data});
+    this.props.setName(this.state.name);
   }
 
   render() {
+    const { navigation }= this.props
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to Manggo Tree
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+        <TextInput
+        style={{height: 40, width:200 ,borderColor: 'gray' }}
+        onChangeText={(text) => this.handleChangeText({ text })}
+        value={this.state.name}
+        placeholder= 'input your name tree'
+        />
+        <Button
+          onPress={() => { navigation.navigate('Begin'); }}
+          title="Start"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
       </View>
     )
   }
@@ -48,4 +65,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Welcome
+const dispatchToState = dispatch => ({
+  setName : (data) => dispatch({type: 'SET_TREE', payload: data}),
+})
+
+export default connect(null, dispatchToState)(Welcome)
