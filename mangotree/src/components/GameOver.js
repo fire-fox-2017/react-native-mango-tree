@@ -12,12 +12,12 @@ class GameOver extends Component {
       <View>
         <Text>Game Over</Text>
       </View>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  tree: state
-})
+  tree: state,
+});
 
-export default connect(mapStateToProps, null)(GameOver)
+export default connect(mapStateToProps, null)(GameOver);
