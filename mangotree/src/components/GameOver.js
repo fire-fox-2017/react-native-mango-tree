@@ -3,7 +3,8 @@ import React from 'react'
 import {
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
@@ -24,6 +25,11 @@ class GameOver extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Gameover</Text>
+        <Image
+          style={styles.treeImage}
+          source={require(`../assets/4.png`)}
+        />
+
         <Text>You tree '{this.props.name}' is DEAD at the age of {this.props.age}</Text>
         <Text>You have harvested {this.props.harvested} fruits</Text>
 
@@ -46,6 +52,12 @@ const styles = {
     margin: 0,
     padding: 10,
     backgroundColor: '#30A9DE',
+  },
+  treeImage: {
+    width: 200,
+    height: 200,
+    padding: 10,
+    margin: 10,
   }
 
 }
