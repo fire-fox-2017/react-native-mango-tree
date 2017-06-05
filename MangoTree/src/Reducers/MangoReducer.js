@@ -19,7 +19,8 @@ const MangoReducer = (state = [], action) => {
       let stat = state.status;
       let totalFruit = 0;
       let count = state.age + 1;
-      if (state.age >= state.maxAge) {
+      if (state.age >= state.MaxAge) {
+        count = count - 1;
         stat = "dead";
       } else {
         if (state.harvestAge <= count) {

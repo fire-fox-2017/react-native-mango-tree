@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, ListView, Button } from "react-native";
+import { View, Text, ListView, Button, Image } from "react-native";
 import { connect } from "react-redux";
 import { StackNavigator } from "react-navigation";
 
-class Main extends Component {
+class GameOver extends Component {
   constructor(props) {
     super(props);
   }
@@ -15,10 +15,20 @@ class Main extends Component {
   render() {
     return (
       <View>
-        <Text>GameOver</Text>
+        <Text>you just found {this.props.mangos.plantName}</Text>
+        <Text>and he's dead</Text>
+        <Text>He's old anyway...</Text>
+        <Image source={require(`../../assets/4.png`)} />
+        <Text>Game Over</Text>
       </View>
     );
   }
 }
 
-export default Main;
+const mapStateToProps = state => {
+  return {
+    mangos: state.mangos
+  };
+};
+
+export default connect(mapStateToProps, null)(GameOver);
