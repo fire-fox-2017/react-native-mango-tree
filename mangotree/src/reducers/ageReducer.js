@@ -6,7 +6,7 @@ const getRandomIntInclusive = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const getAge = (state = [], data) => {
+const getAge = (state, data) => {
   const newAge = getRandomIntInclusive(2, 5);
   const newState = [...state, newAge];
   return newState;

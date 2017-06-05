@@ -10,3 +10,14 @@ export const getAge = () => {
     dispatch(getAgeSuccess());
   };
 };
+
+export const getNamesSuccess = names => ({
+  type: actionType.GET_NAMES_SUCCESS,
+  payload: names,
+});
+
+export const getNames = () => {
+  return (dispatch) => {
+    dispatch(getNamesSuccess());
+  };
+};
