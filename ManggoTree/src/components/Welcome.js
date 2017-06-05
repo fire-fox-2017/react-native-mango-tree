@@ -24,6 +24,10 @@ class Welcome extends Component {
     this.props.setName(this.state.name)
   }
 
+  handleButtonisDead(){
+
+  }
+
   render() {
     const { navigation } = this.props
 
@@ -38,12 +42,14 @@ class Welcome extends Component {
         value={this.state.name}
         placeholder= 'input your name tree'
         />
-        <Button
-          onPress={() => { this.handleButton(); navigation.navigate('Begin'); }}
-          title="Start"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
+            <Button
+              style={{paddingRight: 10}}
+              onPress={() => { this.handleButton(); navigation.navigate('Begin'); }}
+              title="Start"
+              color="#841584"
+              accessibilityLabel="Learn more about this purple button"
+            />
+
       </View>
     );
   }
