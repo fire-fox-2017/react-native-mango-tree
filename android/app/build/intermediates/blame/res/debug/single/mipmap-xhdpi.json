@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/hacktiv8/Documents/new/react-native-mango-tree/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/hacktiv8/Documents/new/react-native-mango-tree/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/hacktiv8/Documents/react-native-mango-tree/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/hacktiv8/Documents/react-native-mango-tree/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    }
+]
