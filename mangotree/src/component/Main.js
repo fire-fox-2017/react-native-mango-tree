@@ -50,16 +50,63 @@ class Main extends Component {
     this.state={
       index: 0,
       year:0,
+      max:(Math.floor(Math.random() * 25)+25),
+      status:"",
+      score:0,
+      harvest:true,
+      titleharvest:"Harvest"
     };
+  }
+  checkimage(){
+    if(this.state.year<this.state.max*25/100){
+      this.setState({
+        status:"Bibit",
+        index:1
+      });
+    }else if (this.state.year<this.state.max*50/100&&this.state.year>this.state.max*25/100) {
+      this.setState({
+        status:"Tumbuh",
+        index:2
+      });
+    }else if (this.state.year<this.state.max*75/100&&this.state.year>this.state.max*50/100) {
+      this.setState({
+        status:"Berbuah",
+        index:3,
+        harvest:false
+      });
+    }else if (this.state.year>this.state.max*75/100) {
+      this.setState({
+        status:"Mati",
+        index:4,
+        harvest:true
+      });
+    }
+  }
+  emulatepress(){
+    let temp=(Math.floor(Math.random() * 5)+1)+this.state.year;
+    this.setState({
+      year:temp
+    });
+    this.checkimage();
+  }
+  harvestpress(){
+    let score=(Math.floor(Math.random() * this.state.max)+1);
+    let titleharvest ="Harvest ("+score+")";
+    this.setState({
+      score,
+      titleharvest
+    });
+    this.emulatepress();
   }
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Hallo  {this.props.username} {"\n"}
-            I am  {this.props.nametree} {this.state.year}
+          I am  {this.props.nametree} {"\n"}
+          {this.state.year} year -{this.state.status}-
         </Text>
-        <Image source={{uri:'../style/assets/' + this.state.index + '.png'}} style={styles.img} />
+        <Image source={{uri:'./style/assets/' + this.state.index + '.png'}} style={styles.img} />
         <Button
           onPress={() => { this.emulatepress();}}
           title="Emulate"
@@ -68,8 +115,9 @@ class Main extends Component {
         />
         <View style={styles.top}>
           <Button
-            onPress={() => { this.emulatepress();}}
-            title="Harvest"
+            onPress={() => { this.harvestpress();}}
+            disabled={this.state.harvest}
+            title={this.state.titleharvest}
             color="#009688"
             style={styles.buttonMulai}
           />
