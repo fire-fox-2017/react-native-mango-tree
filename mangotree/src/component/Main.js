@@ -3,36 +3,77 @@ import { connect } from "react-redux";
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Image,
+  Button
 } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#4DB6AC",
   },
   welcome: {
     fontSize: 40,
     fontWeight:"bold",
     textAlign: "center",
-    margin: 10,
     color: "#ffffff"
+  },
+  img:{
+    marginTop: "5%",
+    marginBottom: "2%",
+    marginRight: "10%",
+    marginLeft: "10%",
+    width: 111,
+    height: 222
+  },
+  button: {
+    height: 40,
+    width:"40%",
+    fontSize: 15,
+    textAlign: "center",
+    color: "#ffffff",
+    marginTop: 10
+  },
+  top: {
+    marginTop: 10
   }
 });
 
 class Main extends Component {
+  static navigationOptions = {
+    header:null
+  }
   constructor(props){
     super(props);
+    this.state={
+      index: 0,
+      year:0,
+    };
   }
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Hallo {{this.props.username}} <br />
-          I am {{this.props.nametree}}
+          Hallo  {this.props.username} {"\n"}
+            I am  {this.props.nametree} {this.state.year}
         </Text>
+        <Image source={{uri:'../style/assets/' + this.state.index + '.png'}} style={styles.img} />
+        <Button
+          onPress={() => { this.emulatepress();}}
+          title="Emulate"
+          color="#009688"
+          style={styles.buttonMulai}
+        />
+        <View style={styles.top}>
+          <Button
+            onPress={() => { this.emulatepress();}}
+            title="Harvest"
+            color="#009688"
+            style={styles.buttonMulai}
+          />
+        </View>
       </View>
     );
   }
