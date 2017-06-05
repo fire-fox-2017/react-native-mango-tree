@@ -17,10 +17,11 @@ const reducer = (state = initialState, action) => {
         return action.tree;
       } else if ( action.tree.age > state.maximum_age){
         return initialState;
+      } else {
+        action.tree.age += 1;
+        action.tree.fruit += Math.floor(Math.random() * (7)) + 1;
+        return action.tree;
       }
-      action.tree.age += 1;
-      action.tree.fruit += Math.floor(Math.random() * (7)) + 1;
-      return action.tree:
     default:
       return state;
   }

@@ -10,3 +10,5 @@ const App = StackNavigator({
   Main: { screen: Main },
   Over: { screen: GameOver },
 })
+
+export default App
