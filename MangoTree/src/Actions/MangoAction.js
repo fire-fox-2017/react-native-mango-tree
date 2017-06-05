@@ -16,6 +16,6 @@ export function grow() {
 
 export function harvest() {
   return {
-    type: "GROW"
+    type: "harvest"
   };
 }
