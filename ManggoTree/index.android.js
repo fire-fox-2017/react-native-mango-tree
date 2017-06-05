@@ -5,13 +5,13 @@
  */
 
 import React, { Component } from 'react';
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
 import {
   AppRegistry
 } from 'react-native';
 
 import App from './src/App.js'
-import store from './src/store/index'
+import store from './src/store'
 
 export default class ManggoTree extends Component{
   render(){

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import Harvest from './Harvest';
+import Harvest from './Listharverst';
 
 const rootReducer = combineReducers({
-  harvestStatus : Harvest
+  statusharverst : Harvest
 })
 
 export default rootReducer

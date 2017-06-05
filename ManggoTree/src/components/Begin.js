@@ -9,38 +9,24 @@ import {
 } from 'react-native';
 
 class Welcome extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      name : ''
-    }
-  }
 
   handleChangeText(data){
-    this.setState({ name : data});
   }
 
   handleButton(){
-    this.props.setName(this.state.name)
   }
 
   render() {
-    const { navigation } = this.props
-
+    console.log(this.props.getName, 'diBegin')
+    const { navigation, getName } = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to Manggo Tree
+          This is {getName.name} Tree
         </Text>
-        <TextInput
-        style={{height: 40, width:200 ,borderColor: 'gray' }}
-        onChangeText={(text) => this.handleChangeText(text)}
-        value={this.state.name}
-        placeholder= 'input your name tree'
-        />
         <Button
           onPress={() => { this.handleButton(); navigation.navigate('Begin'); }}
-          title="Start"
+          title="Emulate"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />
@@ -68,8 +54,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const dispatchToState = dispatch => ({
-  setName: data => dispatch({ type: 'SET_TREE', payload: data }),
+const stateToProps = state => ({
+  getName: state.statusharverst
 })
 
-export default connect(null, dispatchToState)(Welcome)
+
+export default connect(stateToProps, null)(Welcome)
