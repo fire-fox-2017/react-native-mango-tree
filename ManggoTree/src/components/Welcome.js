@@ -22,10 +22,7 @@ class Welcome extends Component {
 
   handleButton(){
     this.props.setName(this.state.name)
-  }
-
-  handleButtonisDead(){
-
+    this.setState({ name : ''})
   }
 
   render() {
