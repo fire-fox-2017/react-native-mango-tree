@@ -31,7 +31,9 @@ class Simulation extends React.Component {
 
   render() {
     console.log(this.props);
-    if (this.props.age >= this.props.maxAge) {
+    console.log('age ', this.props.age);
+    console.log('max age ', this.props.maxAge);
+    if (this.props.age < this.props.maxAge) {
       return (
         <View>
           <Text>In Simulation Scene</Text>
@@ -49,7 +51,7 @@ class Simulation extends React.Component {
     } else {
       return (
         <View>
-          <GameOver />
+          <GameOver navigation={this.props.navigation} />
         </View>
       );
     }

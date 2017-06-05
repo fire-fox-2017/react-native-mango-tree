@@ -17,12 +17,23 @@ class HomeScreen extends React.Component {
     this.state = {
       username: '',
       treeName: '',
+      message: '',
     }
   }
 
   start() {
-    this.props.start(this.state.username, this.state.treeName);
-    this.props.navigation.navigate('Simulation');
+    if(this.state.username.length > 0 && this.state.treeName.length > 0) {
+      this.setState({
+        message: '',
+      });
+      this.props.start(this.state.username, this.state.treeName);
+      this.props.navigation.navigate('Simulation');
+    } else {
+      this.setState({
+        message: 'Username and Tree Name are required',
+      });
+    }
+
   }
 
   render() {
@@ -31,19 +42,26 @@ class HomeScreen extends React.Component {
       <View>
         <Text>Welcome!</Text>
         <View>
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={(username) => this.setState({username})}
-            value={this.state.username}
-          />
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={(treeName) => this.setState({treeName})}
-            value={this.state.treeName}
-          />
+          <View>
+            <Text>User Name</Text>
+            <TextInput
+              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              onChangeText={(username) => this.setState({username})}
+              value={this.state.username}
+            />
+          </View>
+          <View>
+            <Text>Tree Name</Text>
+            <TextInput
+              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              onChangeText={(treeName) => this.setState({treeName})}
+              value={this.state.treeName}
+            />
+          </View>
           <TouchableOpacity>
             <Text onPress={() => this.start() }>Start</Text>
           </TouchableOpacity>
+          <Text>{this.state.message}</Text>
         </View>
       </View>
     );
