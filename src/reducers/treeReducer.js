@@ -17,7 +17,14 @@ const getUserName = (state, data) => {
     return newState
 }
 
-const getTreeName = (state, data)
+const getTreeName = (state, data) => {
+    let newState = {
+        ...state,
+        treename: data
+    }
+
+    return newState
+}
 
 const treeReducer = (state = initialState, { type, payload }) => {
     switch (type) {
@@ -29,3 +36,5 @@ const treeReducer = (state = initialState, { type, payload }) => {
             return state
     }
 }
+
+export default treeReducer

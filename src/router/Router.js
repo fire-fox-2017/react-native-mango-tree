@@ -8,15 +8,15 @@ import Home from '../components/Home'
 
 const RouterComponent = () => {
     return (
-        <Router style={styles.paddingTop}>
-            <Scene key="home" component={Home} title="Welcome"></Scene>
+        <Router style={styles.routerStyle}>
+            <Scene key="home" component={Home} title="Welcome" />
         </Router>
     )
 }
 
 const styles = {
     routerStyle: {
-        paddingTop: 65
+        paddingTop: 100
     }
 }
 
