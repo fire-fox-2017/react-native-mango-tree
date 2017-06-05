@@ -6,11 +6,47 @@ import { connect } from 'react-redux';
 import { initiate } from '../store/action';
 import Simulation from './Simulation';
 
-class HomeScreen extends React.Component {
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: 'skyblue',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  welcome: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    margin: 10
+  },
+  inputContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  label: {
+    color: 'green',
+    justifyContent: 'center',
+  },
+  input: {
+    width: 200,
+    height: 40,
+    // borderWidth: 1,
+    backgroundColor: 'skyblue'
+  },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  button: {
+    backgroundColor: 'green',
+    borderRadius: 5,
+    padding: 5,
+    margin: 10
+  }
+}
 
-  static navigationOptions = {
-      title: 'Welcome',
-    };
+
+class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
@@ -39,13 +75,15 @@ class HomeScreen extends React.Component {
   render() {
     // console.log(this.props);
     return (
-      <View>
-        <Text>Welcome!</Text>
+      <View style={styles.container}>
+        <View>
+            <Text style={styles.welcome}>Welcome!</Text>
+        </View>
         <View>
           <View>
             <Text>User Name</Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={styles.input}
               onChangeText={(username) => this.setState({username})}
               value={this.state.username}
             />
@@ -53,15 +91,17 @@ class HomeScreen extends React.Component {
           <View>
             <Text>Tree Name</Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={styles.input}
               onChangeText={(treeName) => this.setState({treeName})}
               value={this.state.treeName}
             />
           </View>
-          <TouchableOpacity>
-            <Text onPress={() => this.start() }>Start</Text>
-          </TouchableOpacity>
-          <Text>{this.state.message}</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button}>
+              <Text onPress={() => this.start() }>Start</Text>
+            </TouchableOpacity>
+            <Text>{this.state.message}</Text>
+          </View>
         </View>
       </View>
     );
@@ -88,14 +128,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const Home = connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
-
-const HomeNav = StackNavigator({
-  HomeScreen: {
-    screen: Home,
-  },
-  Simulation: {
-    screen: Simulation,
-  },
-});
 
 export default Home;

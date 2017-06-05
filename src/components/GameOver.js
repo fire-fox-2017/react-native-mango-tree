@@ -1,7 +1,20 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
+
+const styles = {
+  image: {
+    width: 250,
+    height: 250,
+  },
+  button: {
+    backgroundColor: 'green',
+    borderRadius: 5,
+    margin: 10
+  },
+};
+
 
 class GameOver extends React.Component {
 
@@ -13,9 +26,10 @@ class GameOver extends React.Component {
     console.log(this.props);
     return (
       <View>
-        <Text>In Gave Over Screen</Text>
-        <TouchableOpacity onPress={() => {this.goHome() }}>
-          <Text>Back Home!</Text>
+        <Text>Game Over!</Text>
+        <Image source={this.props.image} style={styles.image}/>
+        <TouchableOpacity style={styles.button} onPress={() => {this.goHome() }}>
+          <Text>Home</Text>
         </TouchableOpacity>
       </View>
     );
@@ -33,6 +47,7 @@ const mapStateToProps = (state) => {
     currentHarvest: state.currentHarvest,
     totalHarvest: state.totalHarvest,
     isHealthy: state.isHealthy,
+    image: state.selectedImage,
   };
 };
 

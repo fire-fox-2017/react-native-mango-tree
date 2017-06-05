@@ -1,10 +1,45 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { addAge, bearFruit, harvestFruit, isHealthy } from '../store/action';
 import GameOver from './GameOver';
+
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: 'skyblue',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  image: {
+    width: 250,
+    height: 250,
+  },
+  inputContainer: {
+    flex: 1,
+  },
+  label: {
+    color: 'green'
+  },
+  input: {
+    width: 200,
+    height: 40,
+    // borderWidth: 1,
+    backgroundColor: 'lime'
+  },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  button: {
+    backgroundColor: 'green',
+    borderRadius: 5,
+    padding: 5,
+    margin: 10
+  }
+}
 
 class Simulation extends React.Component {
 
@@ -30,27 +65,26 @@ class Simulation extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    console.log('age ', this.props.age);
-    console.log('max age ', this.props.maxAge);
+    console.log(this.props.image);
     if (this.props.age < this.props.maxAge) {
       return (
-        <View>
+        <View style={styles.container}>
           <Text>In Simulation Scene</Text>
+          <Image source={this.props.image} style={styles.image}/>
           <Text>age: {this.props.age}</Text>
           <Text>total harvest: {this.props.totalHarvest}</Text>
           <Text>current harvest: {this.props.currentHarvest}</Text>
-          <TouchableOpacity onPress={() => {this.simulate() }}>
+          <TouchableOpacity style={styles.button} onPress={() => {this.simulate() }}>
             <Text>Simulate!</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {this.harvest() }}>
+          <TouchableOpacity style={styles.button} onPress={() => {this.harvest() }}>
             <Text>Harvest!</Text>
           </TouchableOpacity>
         </View>
       );
     } else {
       return (
-        <View>
+        <View style={styles.container}>
           <GameOver navigation={this.props.navigation} />
         </View>
       );
@@ -70,6 +104,7 @@ const mapStateToProps = (state) => {
     currentHarvest: state.currentHarvest,
     totalHarvest: state.totalHarvest,
     isHealthy: state.isHealthy,
+    image: state.selectedImage,
   };
 };
 

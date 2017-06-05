@@ -7,6 +7,14 @@ const initialState = {
   currentHarvest: 0,
   totalHarvest: 0,
   isHealthy: true,
+  images: {
+      0: require('../assets/0.png'),
+      1: require('../assets/1.png'),
+      2: require('../assets/2.png'),
+      3: require('../assets/3.png'),
+      4: require('../assets/4.png'),
+  },
+  selectedImage: require('../assets/0.png')
 };
 
 function reducer(state = initialState, action) {
@@ -23,7 +31,8 @@ function reducer(state = initialState, action) {
     case 'ADD_AGE':
       return {
         ...state,
-        age: state.age + 1
+        age: state.age + 1,
+        selectedImage: action.payload
       }
     case 'IS_HEALTHY':
       return {
