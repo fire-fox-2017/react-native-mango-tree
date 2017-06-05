@@ -6,7 +6,7 @@ const initialState = {
   age: 0,
   currentHarvest: 0,
   totalHarvest: 0,
-  isHealty: false,
+  isHealthy: true,
 };
 
 function reducer(state = initialState, action) {
@@ -23,8 +23,12 @@ function reducer(state = initialState, action) {
     case 'ADD_AGE':
       return {
         ...state,
-        age: state.age + 1,
-        isHealthy: action.payload
+        age: state.age + 1
+      }
+    case 'IS_HEALTHY':
+      return {
+        ...state,
+        isHealty: action.payload
       }
     case 'BEAR_FRUIT' :
       return {

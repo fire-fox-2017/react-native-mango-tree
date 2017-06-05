@@ -10,6 +10,7 @@ class GameOver extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <View>
         <Text>In Gave Over Screen</Text>
@@ -26,6 +27,7 @@ const mapStateToProps = (state) => {
   return {
     username: state.username,
     treeName: state.treeName,
+    age: state.age,
     maxAge: state.maxAge,
     bearingAge: state.bearingAge,
     currentHarvest: state.currentHarvest,
@@ -35,9 +37,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    start: () => dispatch(initiate()),
-  };
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameOver);

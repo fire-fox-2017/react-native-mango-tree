@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { addAge, bearFruit, harvestFruit, isHealty } from '../store/action';
+import { addAge, bearFruit, harvestFruit, isHealthy } from '../store/action';
 import GameOver from './GameOver';
 
 class Simulation extends React.Component {
@@ -20,22 +20,40 @@ class Simulation extends React.Component {
   }
 
   simulate() {
-    this.
+    this.props.addAge();
+    this.props.isHealthyCheck(this.props.age);
+    this.props.bearFruit(this.props.age);
+  }
+
+  harvest() {
+    this.props.harvestFruit();
   }
 
   render() {
     console.log(this.props);
-    return (
-      <View>
-        <Text>In Simulation Scene</Text>
-        <TouchableOpacity onPress={() => {this.goHome() }}>
-          <Text>Simulate!</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => {this.goHome() }}>
-          <Text>Harvest!</Text>
-        </TouchableOpacity>
-      </View>
-    );
+    if (this.props.age >= this.props.maxAge) {
+      return (
+        <View>
+          <Text>In Simulation Scene</Text>
+          <Text>age: {this.props.age}</Text>
+          <Text>total harvest: {this.props.totalHarvest}</Text>
+          <Text>current harvest: {this.props.currentHarvest}</Text>
+          <TouchableOpacity onPress={() => {this.simulate() }}>
+            <Text>Simulate!</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {this.harvest() }}>
+            <Text>Harvest!</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return (
+        <View>
+          <GameOver />
+        </View>
+      );
+    }
+
   }
 
 }
@@ -44,6 +62,7 @@ const mapStateToProps = (state) => {
   return {
     username: state.username,
     treeName: state.treeName,
+    age: state.age,
     maxAge: state.maxAge,
     bearingAge: state.bearingAge,
     currentHarvest: state.currentHarvest,
@@ -57,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
     addAge: (age) => dispatch(addAge(age)),
     bearFruit: (age) => dispatch(bearFruit(age)),
     harvestFruit: () => dispatch(harvestFruit()),
-    isHealthy: (age) => dispatch(isHealthy()),
+    isHealthyCheck: (age) => dispatch(isHealthy(age)),
   };
 }
 
