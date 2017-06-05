@@ -3,11 +3,12 @@ import {
   View,
   Text,
   Button,
+  TouchableOpacity
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 
-import { gameStart } from '../actions'
+import { gameStart, gameOver, harvest } from '../actions'
 
 
 class Emulate extends React.Component {
@@ -15,7 +16,8 @@ class Emulate extends React.Component {
     super(props)
     console.log("emulate consturctor", this.props)
     this.state = {
-      age: 0
+      age: 0,
+      fruits: 0,
     }
   }
 
@@ -36,6 +38,7 @@ class Emulate extends React.Component {
   //     })
   //   }
   // }
+
   getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -43,34 +46,51 @@ class Emulate extends React.Component {
   onPressEmulate() {
     // add age
     console.log("onPressEmulate", this.state.age)
-    const random_num = this.getRandomInt(0,5)
+    const random_num = this.getRandomInt(1,5)
+    const random_num_fruits = this.getRandomInt(10,20)
     console.log("----> random_num", random_num)
     this.setState({
-      age: this.state.age + random_num
+      age: this.state.age + random_num,
+      fruits: this.state.fruits + random_num_fruits
     }, () => {
       console.log("set state hahah")
+
       if(this.state.age >= this.props.max_age){
         //go to gameover page
+        this.props.gameOver(this.state.age)
         Actions.Gameover()
       }
     })
+  }
 
-
-
+  onPressHarvest() {
+    console.log('onPressHarvest')
+    const temp_fruits = this.state.fruits
+    this.setState({
+      fruits: 0
+    }, () => {
+      this.props.harvest(temp_fruits)
+    })
   }
 
   render () {
     return (
       <View style={styles.container}>
         <Text>Emulate</Text>
-        <Text>{this.props.name}!!</Text>
-        <Text>{this.props.max_age}</Text>
-        <Text>{this.state.age}</Text>
+        <Text>Tree Name: {this.props.name}!!</Text>
+        <Text>Max Age: {this.props.max_age}</Text>
+        <Text>Age: {this.state.age}</Text>
+        <Text>Fruits: {this.state.fruits}</Text>
+        <Text>Harvested: ({this.props.harvested})</Text>
+
+        <TouchableOpacity style={styles.button} title="Harvest" onPress={() => this.onPressHarvest() } >
+          <Text>Harvest</Text>
+        </TouchableOpacity>
 
 
-
-        <Button title="Emulate" onPress={() => this.onPressEmulate() } />
-
+        <TouchableOpacity title="Emulate" onPress={() => this.onPressEmulate() } >
+          <Text>Emulate</Text>
+        </TouchableOpacity>
 
 
       </View>
@@ -84,6 +104,11 @@ const styles = {
   container: {
     flex: 1,
     marginTop: 50
+  },
+  harvestButton: {
+    margin: 0,
+    padding: 10,
+    backgroundColor: '#EDB1F1',
   }
 }
 
@@ -91,13 +116,16 @@ const styles = {
 const mapStateToProps = (state) => {
   return {
     name: state.MangoReducer.name,
-    max_age: state.MangoReducer.max_age
+    max_age: state.MangoReducer.max_age,
+    harvested: state.MangoReducer.harvested
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    gameStart: (data) => { dispatch(gameStart(data)) }
+    gameStart: (data) => { dispatch(gameStart(data)) },
+    gameOver: (age) => { dispatch(gameOver(age)) },
+    harvest: (fruits) => { dispatch(harvest(fruits)) }
   }
 }
 

@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TextInput,
-  Button
+  Button,
+  TouchableOpacity
 } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
@@ -33,11 +34,13 @@ class Main extends React.Component {
 
         <TextInput
           style={{height: 40}}
-          placeholder="Type here!"
+          placeholder="Input Tree Name"
           onChangeText={(name) => this.setState({name})}
         />
 
-        <Button title="Start" onPress={() => this.onPressHandler() } />
+        <TouchableOpacity onPress={() => this.onPressHandler() } >
+          <Text>Start</Text>
+        </TouchableOpacity>
 
       </View>
     )
