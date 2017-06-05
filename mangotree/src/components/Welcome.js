@@ -5,6 +5,9 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { newTree } from '../actions';
 
 class Welcome extends Component {
+  static navigationOptions = {
+    title: 'Welcome',
+  };
   constructor() {
     super()
     this.state= {
@@ -24,12 +27,13 @@ class Welcome extends Component {
   render() {
     return (
       <View>
-        <Text>Welcome</Text>
         <TextInput
           onChangeText={(name) => this.setState({name})}
+          placeholder='tree name'
         />
         <TextInput
           onChangeText={(owner) => this.setState({owner})}
+          placeholder='tree owner'
         />
         <Button
           title='New Tree'

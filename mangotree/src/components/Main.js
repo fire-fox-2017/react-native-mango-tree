@@ -5,11 +5,22 @@ import { View, Text, Button } from 'react-native';
 import { growTree, harvestTree } from '../actions'
 
 class Main extends Component {
+  static navigationOptions = {
+    title: 'Grow your tree!',
+  };
   constructor(props) {
     super(props)
     this.state= {
-      died: false
+      died: false,
     }
+  }
+
+  good(){
+    return Math.floor(this.props.tree.harvested * 0.7)
+  }
+
+  harvest(){
+    this.props.harvestTree(this.props.tree)
   }
 
   grow() {
@@ -27,7 +38,7 @@ class Main extends Component {
         <Text>name: {this.props.tree.name}</Text>
         <Text>age: {this.props.tree.age}</Text>
         <Text>fruit: {this.props.tree.fruit}</Text>
-        <Text>harvested: {this.props.tree.harvested}</Text>
+        <Text>harvested: {this.good()} good, {this.props.tree.harvested-this.good()} bad</Text>
         <Button
           title='Grow!'
           onPress={()=>this.grow()}
@@ -35,7 +46,7 @@ class Main extends Component {
         />
         <Button
           title='Harvest!'
-          onPress={()=>this.props.harvestTree(this.props.tree)}
+          onPress={()=>this.harvest()}
         />
       </View>
     )

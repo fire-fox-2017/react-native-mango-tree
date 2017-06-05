@@ -4,6 +4,9 @@ import { View, Text } from 'react-native';
 
 
 class GameOver extends Component {
+  static navigationOptions = {
+    title: 'RIP',
+  };
   render() {
     return (
       <View>
