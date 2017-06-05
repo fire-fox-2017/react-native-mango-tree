@@ -1,6 +1,6 @@
 import * as actionType from './constants';
 
-const getAgeSuccess = age => ({
+export const getAgeSuccess = age => ({
   type: actionType.GET_AGE_SUCCESS,
   age,
 });

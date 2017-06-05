@@ -12,7 +12,7 @@ class WelcomeScreen extends Component {
         <Text>Welcome!</Text>
         <TextInput placeholder="your name" style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} />
         <TextInput placeholder="give your tree a name" style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} />
-        <TouchableOpacity style={{ backgroundColor: "violet" }}><Text>Submit</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Main')} style={{ backgroundColor: "violet" }}><Text>Submit</Text></TouchableOpacity>
       </View>
     );
   }
