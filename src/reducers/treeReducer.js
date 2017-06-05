@@ -1,12 +1,17 @@
 import {
     GET_USER_NAME,
     GET_TREE_NAME,
-    GET_TREE_START
+    GET_TREE_START,
+    GET_INFO_TREE
 } from '../actions/constant.js'
 
 const initialState = {
     username: '',
-    treename: ''
+    treename: '',
+    age: 0,
+    ageHarvest: Math.floor((Math.random() * 10) + 1),
+    ageDead: ageHarvest + 1,
+    harvest: Math.floor((Math.random() * 10) + 1)
 }
 
 const getUserName = (state, data) => {
@@ -34,6 +39,14 @@ const getTreeStart = (state, data) => {
     return newState
 }
 
+const getInfoTree = (state) => {
+    let newState = {
+        ...state
+    }
+
+    return newState
+}
+
 const treeReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case GET_USER_NAME:
@@ -42,6 +55,8 @@ const treeReducer = (state = initialState, { type, payload }) => {
             return getTreeName(state, payload)
         case GET_TREE_START:
             return getTreeStart(state, payload)
+        case GET_INFO_TREE:
+            return getInfoTree(state)
         default:
             return state
     }

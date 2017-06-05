@@ -3,7 +3,8 @@ import { Actions } from 'react-native-router-flux'
 import {
     GET_USER_NAME,
     GET_TREE_NAME,
-    GET_TREE_START
+    GET_TREE_START,
+    GET_INFO_TREE
 } from './constant'
 
 export const getUserName = username => {
@@ -25,5 +26,11 @@ export const getTreeStart = tree => {
     return {
         type: GET_TREE_START,
         payload: tree
+    }
+}
+
+export const getInfoTree = () => {
+    return {
+        type: GET_INFO_TREE
     }
 }

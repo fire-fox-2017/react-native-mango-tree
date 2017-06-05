@@ -112,8 +112,7 @@ const mapDispatchToProps = dispatch => ({
     },
     getTreeName: (treename) => {
         dispatch(getTreeName(treename))
-    }
-    ,
+    },
     getTreeStart: (data) => {
         dispatch(getTreeStart(data))
     }
