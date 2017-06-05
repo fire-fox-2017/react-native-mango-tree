@@ -4,7 +4,9 @@ import {
     GET_TREE_START,
     GET_INFO_TREE,
     ADD_AGE,
-    HARVEST_MANGO
+    HARVEST_MANGO,
+    DEAD_TREE,
+    BACK_TO_HOME
 } from '../actions/constant.js'
 
 const initialState = {
@@ -55,38 +57,72 @@ const addAge = (state, data) => {
 
     const { age, ageHarvest, ageDead, harvest, harvestStatus } = state
 
-    let umur = data + 1
-    let buah = 0
-    let status = null
-    let petik = null
+    var umur = data + 1
+    var buah = 0
+    var petik = null
+    var status = true
 
-    console.log(umur)
-    console.log(ageDead)
+    let newState = {}
 
     if (umur >= ageDead) {
-        status = false
+        var status = false
     } else {
         if (umur >= ageHarvest) {
             buah = Math.floor((Math.random() * 10) + 1)
-            status = true
-            petik = true
         }
     }
 
-    let newState = {
-        ...state,
-        age: umur,
-        harvest: buah,
-        alive: status
+    if (status) {
+        let newState = {
+            ...state,
+            age: umur,
+            harvest: buah,
+            alive: true,
+            harvestStatus: petik
+        }
+        return newState
+    } else {
+        let newData = {
+            ...state,
+            alive: false
+        }
+        return newData
     }
 
-    return newState
+
+
 }
 
 const harvestMango = state => {
     let newState = {
         ...state,
         harvest: 0
+    }
+
+    return newState
+}
+
+const deadTree = state => {
+    let newState = {
+        ...state,
+        alive: false,
+        harvestStatus: false
+    }
+
+    return newState
+}
+
+const backToHome = state => {
+    let newState = {
+        ...state,
+        username: '',
+        treename: '',
+        age: 0,
+        ageHarvest: Math.floor((Math.random() * 5) + 1),
+        ageDead: Math.floor((Math.random() * 7) + 5),
+        harvest: 0,
+        alive: true,
+        harvestStatus: false
     }
 
     return newState
@@ -106,6 +142,10 @@ const treeReducer = (state = initialState, { type, payload }) => {
             return addAge(state, payload)
         case HARVEST_MANGO:
             return harvestMango(state)
+        case DEAD_TREE:
+            return deadTree(state)
+        case BACK_TO_HOME:
+            return backToHome(state)
         default:
             return state
     }

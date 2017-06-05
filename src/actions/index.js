@@ -6,7 +6,9 @@ import {
     GET_TREE_START,
     GET_INFO_TREE,
     ADD_AGE,
-    HARVEST_MANGO
+    HARVEST_MANGO,
+    DEAD_TREE,
+    BACK_TO_HOME
 } from './constant'
 
 export const getUserName = username => {
@@ -47,5 +49,20 @@ export const addAge = (age) => {
 export const harvestMango = () => {
     return {
         type: HARVEST_MANGO
+    }
+}
+
+export const deadTree = () => {
+    Actions.dead()
+    return {
+        type: DEAD_TREE
+    }
+}
+
+export const backToHome = () => {
+    // alert('a')
+    Actions.home()
+    return {
+        type: BACK_TO_HOME
     }
 }
