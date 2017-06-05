@@ -1,0 +1,1 @@
+export const GET_AGE_SUCCESS = 'GET_AGE_SUCCESS';
