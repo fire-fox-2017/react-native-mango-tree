@@ -1,5 +1,9 @@
-import * as actionType from '../actions/constants';
+import { combineReducers } from 'redux';
 
-const reducer = (state = 0, action) {
+import ageReducer from './ageReducer';
 
-}
+const rootReducer = combineReducers({
+  age: ageReducer,
+});
+
+export default rootReducer;
