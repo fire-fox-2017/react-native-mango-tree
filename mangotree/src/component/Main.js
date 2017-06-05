@@ -15,18 +15,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#4DB6AC",
   },
   welcome: {
-    fontSize: 40,
+    fontSize: 35,
     fontWeight:"bold",
     textAlign: "center",
     color: "#ffffff"
   },
   img:{
-    marginTop: "5%",
-    marginBottom: "2%",
-    marginRight: "10%",
-    marginLeft: "10%",
-    width: 111,
-    height: 222
+    width: 200,
+    height: 200,
+    marginLeft:"20%",
+    marginBottom:5
   },
   button: {
     height: 40,
@@ -41,6 +39,14 @@ const styles = StyleSheet.create({
   }
 });
 
+const IMAGES = {
+  image0: require("./0.png"),
+  image1: require("./1.png"),
+  image2: require("./2.png"),
+  image3: require("./3.png"),
+  image4: require("./4.png"),
+};
+
 class Main extends Component {
   static navigationOptions = {
     header:null
@@ -54,7 +60,11 @@ class Main extends Component {
       status:"",
       score:0,
       harvest:true,
-      titleharvest:"Harvest"
+      emulate:false,
+      titleharvest:"Harvest",
+      imgurl:["./0.png","./1.png","./2.png","./3.png","./4.png"],
+      home:true,
+      end:""
     };
   }
   checkimage(){
@@ -72,13 +82,17 @@ class Main extends Component {
       this.setState({
         status:"Berbuah",
         index:3,
-        harvest:false
+        harvest:false,
+        emulate:true
       });
     }else if (this.state.year>this.state.max*75/100) {
       this.setState({
         status:"Mati",
         index:4,
-        harvest:true
+        harvest:true,
+        emulate:true,
+        home:false,
+        end:`---YOUR SCORE ${this.state.score}---`
       });
     }
   }
@@ -99,16 +113,19 @@ class Main extends Component {
     this.emulatepress();
   }
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Hallo  {this.props.username} {"\n"}
           I am  {this.props.nametree} {"\n"}
-          {this.state.year} year -{this.state.status}-
+          {this.state.year} year -{this.state.status}-{"\n"}
+          {this.state.end}
         </Text>
-        <Image source={{uri:'./style/assets/' + this.state.index + '.png'}} style={styles.img} />
+        <Image source={IMAGES["image"+this.state.index]} style={styles.img} />
         <Button
           onPress={() => { this.emulatepress();}}
+          disabled={this.state.emulate}
           title="Emulate"
           color="#009688"
           style={styles.buttonMulai}
@@ -118,6 +135,15 @@ class Main extends Component {
             onPress={() => { this.harvestpress();}}
             disabled={this.state.harvest}
             title={this.state.titleharvest}
+            color="#009688"
+            style={styles.buttonMulai}
+          />
+        </View>
+        <View style={styles.top}>
+          <Button
+            onPress={() => {navigate("Home"); }}
+            disabled={this.state.home}
+            title="Home"
             color="#009688"
             style={styles.buttonMulai}
           />
