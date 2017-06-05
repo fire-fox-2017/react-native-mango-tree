@@ -53,6 +53,12 @@ class Emulate extends React.Component {
       treeImageIndex = 1
     else if(temp*2 <= total_age && total_age < temp*3)
       treeImageIndex = 2
+    else if(temp*3 <= total_age && total_age < temp*4)
+      treeImageIndex = 3
+    else if(temp*4 <= total_age && total_age < temp*5)
+      treeImageIndex = 4
+    else if(temp*5 <= total_age)
+      treeImageIndex = 5
 
 
     this.setState({
@@ -85,12 +91,21 @@ class Emulate extends React.Component {
   }
 
   render () {
+    const thumbnails = {
+      0  : require('../assets/0.png'),
+      1  : require('../assets/1.png'),
+      2  : require('../assets/2.png'),
+      3  : require('../assets/3.png'),
+      4  : require('../assets/4.png')
+    }
+    const thumbnail = thumbnails[this.state.treeImage]
+
     return (
       <View style={styles.container}>
 
         <Image
           style={styles.treeImage}
-          source={require(`../assets/0.png`)}
+          source={thumbnail}
         />
 
         <Text>Emulate</Text>
