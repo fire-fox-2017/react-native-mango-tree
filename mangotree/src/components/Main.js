@@ -6,7 +6,7 @@ class MainScreen extends Component {
     return (
       <View>
         <Text>Main Component</Text>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('GameOver')} style={{ backgroundColor: "violet" }}><Text>Submit</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('GameOver')} style={{ backgroundColor: "green" }}><Text>Submit</Text></TouchableOpacity>
       </View>
     );
   }
