@@ -6,6 +6,14 @@ import {
     TouchableOpacity
 } from 'react-native'
 
+import {
+    getUserName,
+    getTreeName,
+    getTree
+} from '../actions/index'
+
+import { connect } from 'react-redux'
+
 const styles = {
     inputStyle: {
         margin: 15,
@@ -43,14 +51,21 @@ class Home extends React.Component {
     }
 
     onUserNameChange(username) {
-        this.props.
+        this.props.getUserName(username)
     }
 
     onTreeNameChange(treename) {
+        this.props.getTreeName(treename)
+    }
 
+    getTree() {
+        const { username, treename } = this.props
+        this.props.getTree(username, treename)
     }
 
     render() {
+        console.log('props username', this.props.username)
+        console.log('props treename', this.props.treename)
         return (
             <View>
                 <TextInput
@@ -58,24 +73,41 @@ class Home extends React.Component {
                     placeholder="Your Name"
                     style={styles.inputStyle}
                     onChangeText={this.onUserNameChange}
+                    value={this.props.username}
                 />
                 <TextInput
                     autoCapitalize="none"
                     placeholder="Give Your Tree Name"
                     style={styles.inputStyle}
                     onChangeText={this.onTreeNameChange}
+                    value={this.props.treename}
                 />
                 <TouchableOpacity
                     style={styles.button}
+                    onPress={this.getTree()}
                 >
                     <Text style={styles.text}>
                         Submit
                     </Text>
                 </TouchableOpacity>
 
-            </View >
+            </View>
         )
     }
 }
 
-export default Home
+const mapStateToProps = state => ({
+    username: state.username,
+    treename: state.treename
+})
+
+const mapDispatchToProps = dispatch => ({
+    getUserName: (username) => {
+        dispatch(getUserName(username))
+    },
+    getTreeName = dispatch => ({
+        dispatch(getTreeName(treename))
+    })
+})
+
+export default connect(null, null)(Home)

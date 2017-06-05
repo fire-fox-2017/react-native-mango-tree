@@ -18,3 +18,7 @@ export const getTreeName = treename => {
         payload: treename
     }
 }
+
+export const getTree = (username, treename) => {
+    Actions.tree()
+}
