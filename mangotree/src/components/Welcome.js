@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 class WelcomeScreen extends Component {
   constructor(props) {
@@ -9,7 +9,10 @@ class WelcomeScreen extends Component {
   render() {
     return (
       <View>
-        <Text>Testing</Text>
+        <Text>Welcome!</Text>
+        <TextInput placeholder="your name" style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} />
+        <TextInput placeholder="give your tree a name" style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} />
+        <TouchableOpacity style={{ backgroundColor: "violet" }}><Text>Submit</Text></TouchableOpacity>
       </View>
     );
   }
