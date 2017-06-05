@@ -1,7 +1,8 @@
 import {
   GAME_START,
   GAME_OVER,
-  HARVEST
+  HARVEST,
+  CLEAR_STATE
 } from './constants'
 
 export const gameStart = (data) => {
@@ -22,5 +23,11 @@ export const harvest = (fruits) => {
   return {
     type: HARVEST,
     fruits
+  }
+}
+
+export const clearState = () => {
+  return {
+    type: CLEAR_STATE
   }
 }

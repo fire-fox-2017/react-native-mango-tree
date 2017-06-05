@@ -30,7 +30,6 @@ class Main extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text>Main</Text>
 
         <TextInput
           style={{height: 40}}
@@ -38,7 +37,7 @@ class Main extends React.Component {
           onChangeText={(name) => this.setState({name})}
         />
 
-        <TouchableOpacity onPress={() => this.onPressHandler() } >
+        <TouchableOpacity style={styles.startButton} onPress={() => this.onPressHandler() } >
           <Text>Start</Text>
         </TouchableOpacity>
 
@@ -51,7 +50,13 @@ const styles = {
   container: {
     flex: 1,
     marginTop: 50
-  }
+  },
+  startButton: {
+    margin: 0,
+    padding: 10,
+    backgroundColor: '#E53A40',
+  },
+
 }
 
 const mapDispatchToProps = (dispatch) => {

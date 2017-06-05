@@ -1,13 +1,13 @@
 import {
   GAME_START,
   GAME_OVER,
-  HARVEST
+  HARVEST,
+  CLEAR_STATE
 } from '../actions/constants'
 
 
 const initialState = {
   name: '',
-  tree_name: '',
   max_age: 10,
   increment_age: 5,
   age: 0,
@@ -40,6 +40,9 @@ const MangoReducer = (state = initialState, action) => {
       console.log(action.fruits)
       const total = state.harvested + action.fruits
       return {...state, harvested: total }
+    }
+    case CLEAR_STATE: {
+      return {...state, name: '', age: 0, harvested: 0}
     }
     default: return state
 

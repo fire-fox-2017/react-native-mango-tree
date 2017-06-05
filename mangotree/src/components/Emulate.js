@@ -83,12 +83,12 @@ class Emulate extends React.Component {
         <Text>Fruits: {this.state.fruits}</Text>
         <Text>Harvested: ({this.props.harvested})</Text>
 
-        <TouchableOpacity style={styles.button} title="Harvest" onPress={() => this.onPressHarvest() } >
+        <TouchableOpacity style={styles.harvestButton} onPress={() => this.onPressHarvest() } >
           <Text>Harvest</Text>
         </TouchableOpacity>
 
 
-        <TouchableOpacity title="Emulate" onPress={() => this.onPressEmulate() } >
+        <TouchableOpacity style={styles.emulateButton} onPress={() => this.onPressEmulate() } >
           <Text>Emulate</Text>
         </TouchableOpacity>
 
@@ -108,8 +108,14 @@ const styles = {
   harvestButton: {
     margin: 0,
     padding: 10,
-    backgroundColor: '#EDB1F1',
+    backgroundColor: '#EFDC05',
+  },
+  emulateButton: {
+    margin: 0,
+    padding: 10,
+    backgroundColor: '#30A9DE',
   }
+
 }
 
 

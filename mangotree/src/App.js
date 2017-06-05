@@ -18,7 +18,7 @@ class App extends React.Component {
         <Text>App</Text>
 
         <Router>
-           <Scene key="Main" component={Main} title="Main" initial={true}  />
+           <Scene key="Main" component={Main} title="Mango Tree" initial={true}  />
            <Scene key="Emulate" component={Emulate} title="Emulate" />
            <Scene key="Gameover" component={GameOver} title="Game Over" />
         </Router>
