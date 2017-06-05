@@ -3,7 +3,8 @@ import {
   View,
   Text,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
@@ -18,26 +19,13 @@ class Emulate extends React.Component {
     this.state = {
       age: 0,
       fruits: 0,
+      fruits_bad: 0,
+      fruits_good: 0,
+      treeImage: 0
     }
+
   }
 
-  // componentDidMount() {
-  //   console.log("componentDidMount")
-  //   console.log(this.props)
-  //   // this.setState({
-  //   //   name: this.props.data.name
-  //   // })
-  //   this.props.gameStart(this.props.temp)
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   console.log("componentWillReceiveProps",nextProps.data)
-  //   if (nextProps.data !== this.props.data) {
-  //     this.setState({
-  //       name: nextProps.data.name)
-  //     })
-  //   }
-  // }
 
   getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -48,10 +36,31 @@ class Emulate extends React.Component {
     console.log("onPressEmulate", this.state.age)
     const random_num = this.getRandomInt(1,5)
     const random_num_fruits = this.getRandomInt(10,20)
+
+    const random_num_fruits_bad = this.getRandomInt(10,20)
+    const random_num_fruits_good = this.getRandomInt(10,20)
+
     console.log("----> random_num", random_num)
+
+    // update image
+    const temp = this.props.max_age/5
+    const total_age = this.state.age + random_num
+    let treeImageIndex = 0
+    console.log('this.treeImage', this.treeImage)
+    if(total_age < temp)
+      treeImageIndex = 0
+    else if(temp <= total_age && total_age < temp*2)
+      treeImageIndex = 1
+    else if(temp*2 <= total_age && total_age < temp*3)
+      treeImageIndex = 2
+
+
     this.setState({
       age: this.state.age + random_num,
-      fruits: this.state.fruits + random_num_fruits
+      fruits: this.state.fruits + random_num_fruits_bad + random_num_fruits_good,
+      fruits_bad: this.state.fruits_bad + random_num_fruits_bad,
+      fruits_good: this.state.fruits_good + random_num_fruits_good,
+      treeImage: treeImageIndex
     }, () => {
       console.log("set state hahah")
 
@@ -67,7 +76,9 @@ class Emulate extends React.Component {
     console.log('onPressHarvest')
     const temp_fruits = this.state.fruits
     this.setState({
-      fruits: 0
+      fruits: 0,
+      fruits_bad: 0,
+      fruits_good: 0
     }, () => {
       this.props.harvest(temp_fruits)
     })
@@ -76,11 +87,20 @@ class Emulate extends React.Component {
   render () {
     return (
       <View style={styles.container}>
+
+        <Image
+          style={styles.treeImage}
+          source={require(`../assets/0.png`)}
+        />
+
         <Text>Emulate</Text>
         <Text>Tree Name: {this.props.name}!!</Text>
         <Text>Max Age: {this.props.max_age}</Text>
         <Text>Age: {this.state.age}</Text>
         <Text>Fruits: {this.state.fruits}</Text>
+        <Text>Fruits BAD: {this.state.fruits_bad}</Text>
+        <Text>Fruits GOOD: {this.state.fruits_good}</Text>
+
         <Text>Harvested: ({this.props.harvested})</Text>
 
         <TouchableOpacity style={styles.harvestButton} onPress={() => this.onPressHarvest() } >
@@ -103,7 +123,8 @@ class Emulate extends React.Component {
 const styles = {
   container: {
     flex: 1,
-    marginTop: 50
+    marginTop: 50,
+    alignItems: 'center'
   },
   harvestButton: {
     margin: 0,
@@ -114,8 +135,13 @@ const styles = {
     margin: 0,
     padding: 10,
     backgroundColor: '#30A9DE',
+  },
+  treeImage: {
+    width: 200,
+    height: 200,
+    padding: 10,
+    margin: 10,
   }
-
 }
 
 
