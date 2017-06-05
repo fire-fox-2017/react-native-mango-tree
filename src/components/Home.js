@@ -9,7 +9,7 @@ import {
 import {
     getUserName,
     getTreeName,
-    getTree
+    getTreeStart
 } from '../actions/index'
 
 import { connect } from 'react-redux'
@@ -47,7 +47,7 @@ class Home extends React.Component {
         super(props)
         this.onUserNameChange = this.onUserNameChange.bind(this)
         this.onTreeNameChange = this.onTreeNameChange.bind(this)
-        this.getTree = this.getTree.bind(this)
+        this.getTreeStart = this.getTreeStart.bind(this)
     }
 
     onUserNameChange(username) {
@@ -58,9 +58,14 @@ class Home extends React.Component {
         this.props.getTreeName(treename)
     }
 
-    getTree() {
+    getTreeStart() {
         const { username, treename } = this.props
-        this.props.getTree(username, treename)
+        let data = {
+            username,
+            treename
+        }
+        // console.log(data)
+        this.props.getTreeStart(data)
     }
 
     render() {
@@ -84,7 +89,7 @@ class Home extends React.Component {
                 />
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={this.getTree()}
+                    onPress={this.getTreeStart}
                 >
                     <Text style={styles.text}>
                         Submit
@@ -105,9 +110,13 @@ const mapDispatchToProps = dispatch => ({
     getUserName: (username) => {
         dispatch(getUserName(username))
     },
-    getTreeName = dispatch => ({
+    getTreeName: (treename) => {
         dispatch(getTreeName(treename))
-    })
+    }
+    ,
+    getTreeStart: (data) => {
+        dispatch(getTreeStart(data))
+    }
 })
 
-export default connect(null, null)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
