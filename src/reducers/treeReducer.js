@@ -2,16 +2,19 @@ import {
     GET_USER_NAME,
     GET_TREE_NAME,
     GET_TREE_START,
-    GET_INFO_TREE
+    GET_INFO_TREE,
+    ADD_AGE,
+    HARVEST_MANGO
 } from '../actions/constant.js'
 
 const initialState = {
     username: '',
     treename: '',
     age: 0,
-    ageHarvest: Math.floor((Math.random() * 10) + 1),
-    ageDead: ageHarvest + 1,
-    harvest: Math.floor((Math.random() * 10) + 1)
+    ageHarvest: Math.floor((Math.random() * 5) + 1),
+    ageDead: Math.floor((Math.random() * 7) + 5),
+    harvest: 0,
+    alive: true
 }
 
 const getUserName = (state, data) => {
@@ -47,6 +50,44 @@ const getInfoTree = (state) => {
     return newState
 }
 
+const addAge = (state, data) => {
+
+    const { age, ageHarvest, ageDead, harvest } = state
+
+    let umur = data + 1
+    let buah = 0
+    let status = null
+
+    console.log(umur)
+    console.log(ageDead)
+
+    if (umur >= ageDead) {
+        status = false
+    } else {
+        if (umur >= ageHarvest) {
+            buah = Math.floor((Math.random() * 10) + 1)
+        }
+    }
+
+    let newState = {
+        ...state,
+        age: umur,
+        harvest: buah,
+        status: true
+    }
+
+    return newState
+}
+
+const harvestMango = state => {
+    let newState = {
+        ...state,
+        harvest: 0
+    }
+
+    return newState
+}
+
 const treeReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case GET_USER_NAME:
@@ -57,6 +98,10 @@ const treeReducer = (state = initialState, { type, payload }) => {
             return getTreeStart(state, payload)
         case GET_INFO_TREE:
             return getInfoTree(state)
+        case ADD_AGE:
+            return addAge(state, payload)
+        case HARVEST_MANGO:
+            return harvestMango(state)
         default:
             return state
     }
