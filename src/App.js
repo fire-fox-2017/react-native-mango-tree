@@ -8,8 +8,8 @@ const App = () => {
   return (
     <Router navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}>
       <Scene key="root">
-        <Scene key="pageMango" component={Mango} title="Mongo" initial={true} />
-        <Scene key="pageSignIn" component={Signin} title="Sign In" />
+        <Scene key="pageSignIn" component={Signin} title="Sign In" initial={true} />
+        <Scene key="pageMango" component={Mango} title="Mango Tree" />
         <Scene key="pageMangoDead" component={MangoDead} title="Mango Dead" />
       </Scene>
     </Router>
@@ -18,16 +18,16 @@ const App = () => {
 
 const styles = {
   navBar: {
-    backgroundColor: '#0D47A1',
+    backgroundColor: '#A5F2E7',
   },
   navBarTitle: {
-    color: '#FFFFFF',
+    color: '#3A0077',
   },
   barButtonTextStyle:{
-    color: '#FFFFFF'
+    color: '#8983F3'
   },
   barButtonIconStyle:{
-    tintColor: 'rgb(255,255,255)'
+    tintColor: '#8983F3'
   }
 }
 

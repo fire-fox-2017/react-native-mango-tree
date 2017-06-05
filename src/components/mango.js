@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AppRegistry, TextInput, Text, View, Button } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { AppRegistry, TextInput, Text, View, Button, Image } from 'react-native';
 import { addGrow } from '../actions/Action';
 
 
@@ -21,15 +21,18 @@ class Mango extends Component {
     Actions.pageMangoDead({ status: true })
   }
 
+
   render() {
     if(this.props.mangoes.length == 0){
       return (<View><Text>Loading..</Text></View>)
     } else {
       return (
-        <View style={{ paddingTop: 55 }}>
+        <View style={{ paddingTop: 55, padding: 40, }}>
           <Text>This is {this.props.mangoes.treeName}</Text>
           <Text>He is {this.props.mangoes.age} years old</Text>
           <Text>Total {this.props.mangoes.total} fruits</Text>
+          
+          <Image source={require('../assets/1.png')} />
             <Button
               onPress={() => this.props.mangoes.age == 20 ?  this.isDead() : this.onGrow() }
               title="Emulate"

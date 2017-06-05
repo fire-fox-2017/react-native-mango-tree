@@ -9,3 +9,12 @@ export const addGrow = () => {
 		})
 	}
 }
+
+export const signin = (data) => {
+	return dispatch => {
+		return dispatch({
+			type : 'SIGNIN',
+			payload: data
+		})
+	}
+}

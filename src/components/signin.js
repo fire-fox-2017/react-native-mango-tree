@@ -1,22 +1,48 @@
 import React, { Component } from 'react';
-import { AppRegistry, TextInput, View, Text } from 'react-native';
+import { AppRegistry, TextInput, View, Button,  } from 'react-native';
+import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
+import { signin } from '../actions/Action';
 
-export default class Signin extends Component {
+class Signin extends Component {
   constructor(props) {
-    super(props);
-    this.state = { text: 'Useless Placeholder' };
+    super(props)
+    this.state = {
+      name: '',
+      treeName: ''
+    }
+  }
+
+  onMangoPage() {
+    this.props.signin(this.state)
+    Actions.pageMango()
   }
 
   render() {
     return (
-      <View style={{ paddingTop: 55 }}>
+      <View style={{ paddingTop: 55, padding: 40 }}>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
+          onChangeText={(name) => this.setState({name})}
+          value={this.state.name}
         />
-        <Text>hekllo</Text>
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={(treeName) => this.setState({treeName})}
+          value={this.state.treeName}
+        />
+        <Button
+          onPress={() =>  this.onMangoPage()}
+          title="Sign In"
+          color="#626FE6"
+        />
       </View>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  signin: (data) => dispatch(signin(data)),
+});
+
+export default connect(null, mapDispatchToProps)(Signin);

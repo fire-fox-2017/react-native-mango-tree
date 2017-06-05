@@ -11,17 +11,28 @@ const addGrow = (state, data) => {
 		age: state.age == 20 ? state.age += 0 : state.age += 1,
 	}
 	let newState = {
-		...state, newData
+		...state, ...newData
 	}
 	return newState
+}
 
+const signin = (state, data) => {
+	let newData = {
+		name: data.name,
+		treeName: data.treeName,
+	}
 
+	let newState = {
+		...state, ...newData
+	}
+	console.log('Reducer', newState)
+	return newState
 }
 
 const Reducer = (state = initialState, { type, payload }) => {
 	switch (type) {
-		case 'FETCH_DATA': {
-			return fetchData(state, payload)
+			case 'SIGNIN': {
+			return signin(state, payload)
 			break;
 		}
 		case 'ADD_GROW': {
