@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -8,10 +8,43 @@ import Simulation from './Simulation';
 
 class HomeScreen extends React.Component {
 
+  static navigationOptions = {
+      title: 'Welcome',
+    };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      treeName: '',
+    }
+  }
+
+  start() {
+    this.props.start(this.state.username, this.state.treeName);
+    this.props.navigation.navigate('Simulation');
+  }
+
   render() {
+    // console.log(this.props);
     return (
       <View>
-        <Text>In Home Screen</Text>
+        <Text>Welcome!</Text>
+        <View>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(username) => this.setState({username})}
+            value={this.state.username}
+          />
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(treeName) => this.setState({treeName})}
+            value={this.state.treeName}
+          />
+          <TouchableOpacity>
+            <Text onPress={() => this.start() }>Start</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -32,15 +65,19 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    start: () => dispatch(initiate()),
+    start: (username, treeName) => dispatch(initiate(username, treeName)),
   };
 }
 
 const Home = connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 
-const StackNav = StackNavigator({
-  HomeScreen: { screen: Home },
-  Simulation: { screen: Simulation}
+const HomeNav = StackNavigator({
+  HomeScreen: {
+    screen: Home,
+  },
+  Simulation: {
+    screen: Simulation,
+  },
 });
 
-export default StackNav;
+export default Home;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -8,10 +8,32 @@ import GameOver from './GameOver';
 
 class Simulation extends React.Component {
 
+  static navigationOptions = {
+      title: 'Welcome',
+      header: {
+        visible: false
+      }
+    };
+
+  goHome() {
+    this.props.navigation.navigate('GameOver');
+  }
+
+  simulate() {
+    this.
+  }
+
   render() {
+    console.log(this.props);
     return (
       <View>
         <Text>In Simulation Scene</Text>
+        <TouchableOpacity onPress={() => {this.goHome() }}>
+          <Text>Simulate!</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => {this.goHome() }}>
+          <Text>Harvest!</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -44,6 +66,8 @@ const SimScreen = connect(mapStateToProps, mapDispatchToProps)(Simulation);
 const SimNav = TabNavigator({
   Simulation: {screen: SimScreen},
   GameOver: {screen: GameOver},
-});
+},
+  { tabBarVisible: false },
+);
 
-export default SimNav;
+export default SimScreen;

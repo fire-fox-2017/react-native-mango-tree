@@ -1,14 +1,21 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 
 class GameOver extends React.Component {
 
+  goHome() {
+    this.props.navigation.navigate('Home');
+  }
+
   render() {
     return (
       <View>
         <Text>In Gave Over Screen</Text>
+        <TouchableOpacity onPress={() => {this.goHome() }}>
+          <Text>Back Home!</Text>
+        </TouchableOpacity>
       </View>
     );
   }
