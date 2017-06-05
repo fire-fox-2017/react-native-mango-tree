@@ -11,12 +11,17 @@ import {
   Text,
   View
 } from 'react-native';
+
+import { Provider } from 'react-redux';
 import App from './src/App';
+import store from './src/store';
 
 export default class mangotree extends Component {
   render() {
     return (
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     );
   }
 }
