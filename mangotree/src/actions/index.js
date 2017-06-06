@@ -1,23 +1,14 @@
 import * as actionType from './constants';
 
-export const getAgeSuccess = age => ({
-  type: actionType.GET_AGE_SUCCESS,
-  payload: age,
-});
-
-export const getAge = () => {
-  return (dispatch) => {
-    dispatch(getAgeSuccess());
-  };
-};
-
-export const getNamesSuccess = names => ({
+export const getNamesSuccess = (name, plantName) => ({
   type: actionType.GET_NAMES_SUCCESS,
-  payload: names,
+  payload: { name, plantName },
 });
 
-export const getNames = () => {
-  return (dispatch) => {
-    dispatch(getNamesSuccess());
-  };
-};
+export const growSuccess = () => ({
+  type: actionType.GROW_SUCCESS,
+});
+
+export const harvestSuccess = () => ({
+  type: actionType.HARVEST_SUCCESS,
+});

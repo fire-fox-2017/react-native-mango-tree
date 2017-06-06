@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, Button } from 'react-native';
+import { connect } from 'react-redux';
+import { StackNavigator } from "react-navigation";
+
+
+import { getNamesSuccess } from '../actions';
 
 class WelcomeScreen extends Component {
   constructor(props) {
@@ -9,6 +14,13 @@ class WelcomeScreen extends Component {
       treeName: '',
     };
   }
+
+startGame = () => {
+  const { navigate } = this.props.navigation;
+  console.log(this.props.getNamesSuccess);
+  this.props.getNamesSuccess(this.state.name, this.state.treeName);
+  navigate('Main');
+};
 
   render() {
     return (
@@ -26,10 +38,18 @@ class WelcomeScreen extends Component {
           value={this.state.treeName}
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
         />
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Main')} style={{ backgroundColor: "green" }}><Text>Submit</Text></TouchableOpacity>
+        <Button title="Start Game" onPress={() => this.startGame()} style={{ backgroundColor: "green" }} />
       </View>
     );
   }
 }
 
-export default WelcomeScreen;
+const mapDispatchToProps = dispatch => {
+  return {
+    getNamesSuccess: (name, treeName) => { 
+      dispatch(getNamesSuccess(name, treeName)) 
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(WelcomeScreen);

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import ageReducer from './ageReducer';
+import treeReducer from './treeReducer';
 
 const rootReducer = combineReducers({
-  age: ageReducer,
+  tree: treeReducer,
 });
 
 export default rootReducer;
