@@ -46,6 +46,10 @@ class MainScreen extends Component {
       this.setState({
         growthStats: 3
       });
+    } else if (this.props.tree.age === this.props.tree.maxAge) {
+      this.setState({
+        growthStats: 4
+      })
     }
   }
 
@@ -62,6 +66,8 @@ class MainScreen extends Component {
       img = require(`../../assets/2.png`);
     } else if (this.state.growthStats === 3) {
       img = require(`../../assets/3.png`);
+    } else if (this.state.growthStats === 4) {
+      img = require(`../../assets/4.png`);
     }
 
     return (
